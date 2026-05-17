@@ -1,0 +1,17 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pth
+.env
+.DS_Store
+mlflow.db
+.mlruns/
+artifacts/
+final_models/
+data/
+outputs/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
