@@ -10,7 +10,7 @@ LOG_PATH = os.path.join(LOG_DIR, LOG_FILE)
 
 logging.basicConfig(
     level=logging.INFO,
-    format="[%(asctime)s] [%(levelname)s] [%(name)s] - %(mmessage)s",
+    format="[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s",
     handlers=[
         logging.FileHandler(LOG_PATH),
         logging.StreamHandler(),
