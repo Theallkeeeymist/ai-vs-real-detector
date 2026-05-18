@@ -82,7 +82,7 @@ class DataTransformationConfig:
         )
         os.makedirs(self.data_transformation_dir, exist_ok=True)
 
-class ModelTrainingConfig:
+class ModelTrainerConfig:
     """
     Configuration for ModelTrainer Component
     Defines hyperparameters for training

@@ -4,3 +4,4 @@ timm==0.9.10
 python-dotenv
 pydantic
 pyyaml
+torchmetrics
