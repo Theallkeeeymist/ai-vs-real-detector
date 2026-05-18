@@ -121,3 +121,32 @@ class ModelTrainerConfig:
             "model_trainer"
         )
         os.makedirs(self.model_trainer_dir, exist_ok=True)
+
+class ModelEvaluationConfig:
+    """
+    Configuration for ModelEvaluation component.
+    Defines where to save evaluation artifacts.
+    """
+    
+    def __init__(self, pipeline_config: TrainingPipelineConfig):
+        self.models_dir = training_pipeline.MODELS_DIR
+        self.metrics_to_track = training_pipeline.METRICS_TO_TRACK
+        
+        # Directory for evaluation artifacts
+        self.evaluation_dir = os.path.join(
+            pipeline_config.artifact_dir,
+            "model_evaluation"
+        )
+        os.makedirs(self.evaluation_dir, exist_ok=True)
+        
+        # Report files
+        self.comparison_report_path = os.path.join(
+            self.evaluation_dir,
+            "model_comparison.csv"
+        )
+        
+        self.confusion_matrices_path = os.path.join(
+            self.evaluation_dir,
+            "confusion_matrices"
+        )
+        os.makedirs(self.confusion_matrices_path, exist_ok=True)
