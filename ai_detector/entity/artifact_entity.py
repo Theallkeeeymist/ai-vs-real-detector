@@ -10,12 +10,11 @@ import numpy as np
 @dataclass
 class DataIngestionArtifact:
     """Contain paths to train/val/test data split"""
-    train_image_paths: List[str]
-    val_image_paths: List[str]
-    test_image_paths: List[str]
-
-    class_labels: Dict[str, int]
-    total_images: int
+    train_dataset: object        # PyTorch Dataset (from random_split)
+    val_dataset: object          # PyTorch Dataset
+    test_dataset: object         # PyTorch Dataset
+    class_labels: dict           # {"real_dataset": 0, "ai_generated_dataset": 1}
+    total_images: int            # Total image count
 
 @dataclass
 class DataValidationArtifact:
@@ -24,17 +23,14 @@ class DataValidationArtifact:
     is_valid: bool
     invalid_images: List[str]
     validation_report: str
-    validation_report_path: str
 
 @dataclass
 class DataTransformationArtifact:
     """Contains all normalized/augmentated image data ready for model training"""
 
-    transformed_train_data_path: str # Processed train image
-    transformed_test_data_path: str  # Processed test image
-    transformed_val_data_path: str   # Processed val image
-
-    transformed_config_path: str     # Path to saved transform pipeline (pickle)
+    dataloaders: dict  # {"model_1": (train, val, test), "model_2": ...}
+    batch_size: int
+    image_size: int
 
 @dataclass
 class ModelArtifact:
