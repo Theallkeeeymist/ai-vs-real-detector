@@ -1,5 +1,5 @@
 """
-ModelTrainer component - trains all 4 models.
+ModelTrainer component - trains all 4 models with MLflow logging.
 Orchestrates training pipeline for each model.
 """
 
@@ -17,6 +17,7 @@ from ai_detector.utils.ml_utils.models import (
     AIHybrid
 )
 from ai_detector.utils.ml_utils.model_loader import ModelLoader
+from ai_detector.utils.ml_utils.mlflow_utils import MLflowManager
 from ai_detector.components.training_utils import (
     get_metrics_trackers,
     train_step,
@@ -33,7 +34,7 @@ import sys
 
 class ModelTrainer:
     """
-    Trains all 4 models from scratch.
+    Trains all 4 models from scratch with MLflow logging.
     Saves state_dict to .pth files.
     """
     
@@ -59,13 +60,34 @@ class ModelTrainer:
     
     def train_model_1(self) -> Dict:
         """
-        Train Model 1 (Custom CNN).
-        Exactly like your notebook.
+        Train Model 1 (Custom CNN) with MLflow logging.
         """
         try:
             logger.info("="*80)
             logger.info("Training Model 1 (Custom CNN)")
             logger.info("="*80)
+            
+            # Initialize MLflow
+            mlflow_manager = MLflowManager()
+            mlflow_manager.start_run(
+                run_name="model_1_custom_cnn",
+                tags={
+                    "model": "custom_cnn",
+                    "phase": "training",
+                    "dataset": "ai_vs_real"
+                }
+            )
+            
+            # Log hyperparameters
+            mlflow_manager.log_params({
+                "learning_rate": self.config.learning_rate,
+                "epochs": self.config.epochs,
+                "batch_size": self.config.batch_size,
+                "model": "custom_cnn",
+                "input_channels": CUSTOM_CNN_INPUT,
+                "hidden_units": CUSTOM_CNN_HIDDEN,
+                "output_classes": CUSTOM_CNN_OUTPUT,
+            })
             
             # Initialize model
             torch.manual_seed(RANDOM_SEED)
@@ -105,6 +127,15 @@ class ModelTrainer:
                 )
                 metrics_history["train"].append(train_metrics)
                 
+                # Log training metrics
+                mlflow_manager.log_metrics({
+                    "train_loss": train_metrics["loss"],
+                    "train_accuracy": train_metrics["accuracy"],
+                    "train_f1": train_metrics["f1"],
+                    "train_precision": train_metrics["precision"],
+                    "train_recall": train_metrics["recall"],
+                }, step=epoch)
+                
                 # Validate
                 val_metrics = test_step(
                     model=model,
@@ -117,6 +148,15 @@ class ModelTrainer:
                     device=self.device
                 )
                 metrics_history["val"].append(val_metrics)
+                
+                # Log validation metrics
+                mlflow_manager.log_metrics({
+                    "val_loss": val_metrics["loss"],
+                    "val_accuracy": val_metrics["accuracy"],
+                    "val_f1": val_metrics["f1"],
+                    "val_precision": val_metrics["precision"],
+                    "val_recall": val_metrics["recall"],
+                }, step=epoch)
             
             # Test
             logger.info("\n" + "="*40)
@@ -133,11 +173,26 @@ class ModelTrainer:
                 device=self.device
             )
             
+            # Log test metrics
+            mlflow_manager.log_metrics({
+                "test_loss": test_metrics["loss"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_f1": test_metrics["f1"],
+                "test_precision": test_metrics["precision"],
+                "test_recall": test_metrics["recall"],
+            })
+            
             # Save model
             os.makedirs(self.config.model_trainer_dir, exist_ok=True)
             model_path = os.path.join(self.config.model_trainer_dir, "model_1_custom_cnn.pth")
             torch.save(model.state_dict(), model_path)
             logger.info(f"✓ Model 1 saved to {model_path}")
+            
+            # Log model to MLflow
+            mlflow_manager.log_model(model, "model_1")
+            
+            # End run
+            mlflow_manager.end_run()
             
             return {
                 "model_name": "model_1",
@@ -153,13 +208,33 @@ class ModelTrainer:
     
     def train_model_2(self) -> Dict:
         """
-        Train Model 2 (EfficientNet B0).
-        Exactly like your notebook.
+        Train Model 2 (EfficientNet B0) with MLflow logging.
         """
         try:
             logger.info("="*80)
             logger.info("Training Model 2 (EfficientNet B0)")
             logger.info("="*80)
+            
+            # Initialize MLflow
+            mlflow_manager = MLflowManager()
+            mlflow_manager.start_run(
+                run_name="model_2_efficientnet",
+                tags={
+                    "model": "efficientnet_b0",
+                    "phase": "training",
+                    "dataset": "ai_vs_real"
+                }
+            )
+            
+            # Log hyperparameters
+            mlflow_manager.log_params({
+                "learning_rate": self.config.learning_rate,
+                "epochs": self.config.epochs,
+                "batch_size": self.config.batch_size,
+                "model": "efficientnet_b0",
+                "dropout": 0.3,
+                "hidden_units": 512,
+            })
             
             # Initialize model
             torch.manual_seed(RANDOM_SEED)
@@ -196,6 +271,15 @@ class ModelTrainer:
                 )
                 metrics_history["train"].append(train_metrics)
                 
+                # Log training metrics
+                mlflow_manager.log_metrics({
+                    "train_loss": train_metrics["loss"],
+                    "train_accuracy": train_metrics["accuracy"],
+                    "train_f1": train_metrics["f1"],
+                    "train_precision": train_metrics["precision"],
+                    "train_recall": train_metrics["recall"],
+                }, step=epoch)
+                
                 # Validate
                 val_metrics = test_step(
                     model=model,
@@ -208,6 +292,15 @@ class ModelTrainer:
                     device=self.device
                 )
                 metrics_history["val"].append(val_metrics)
+                
+                # Log validation metrics
+                mlflow_manager.log_metrics({
+                    "val_loss": val_metrics["loss"],
+                    "val_accuracy": val_metrics["accuracy"],
+                    "val_f1": val_metrics["f1"],
+                    "val_precision": val_metrics["precision"],
+                    "val_recall": val_metrics["recall"],
+                }, step=epoch)
             
             # Test
             logger.info("\n" + "="*40)
@@ -224,11 +317,26 @@ class ModelTrainer:
                 device=self.device
             )
             
+            # Log test metrics
+            mlflow_manager.log_metrics({
+                "test_loss": test_metrics["loss"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_f1": test_metrics["f1"],
+                "test_precision": test_metrics["precision"],
+                "test_recall": test_metrics["recall"],
+            })
+            
             # Save model
             os.makedirs(self.config.model_trainer_dir, exist_ok=True)
             model_path = os.path.join(self.config.model_trainer_dir, "model_2_efficientnet.pth")
             torch.save(model.state_dict(), model_path)
             logger.info(f"✓ Model 2 saved to {model_path}")
+            
+            # Log model to MLflow
+            mlflow_manager.log_model(model, "model_2")
+            
+            # End run
+            mlflow_manager.end_run()
             
             return {
                 "model_name": "model_2",
@@ -244,13 +352,32 @@ class ModelTrainer:
     
     def train_model_3(self) -> Dict:
         """
-        Train Model 3 (ViT B-16).
-        Exactly like your notebook.
+        Train Model 3 (ViT B-16) with MLflow logging.
         """
         try:
             logger.info("="*80)
             logger.info("Training Model 3 (ViT B-16)")
             logger.info("="*80)
+            
+            # Initialize MLflow
+            mlflow_manager = MLflowManager()
+            mlflow_manager.start_run(
+                run_name="model_3_vit",
+                tags={
+                    "model": "vit_b_16",
+                    "phase": "training",
+                    "dataset": "ai_vs_real"
+                }
+            )
+            
+            # Log hyperparameters
+            mlflow_manager.log_params({
+                "learning_rate": self.config.learning_rate,
+                "epochs": self.config.epochs,
+                "batch_size": self.config.batch_size,
+                "model": "vit_b_16",
+                "output_features": 768,
+            })
             
             # Initialize model
             torch.manual_seed(RANDOM_SEED)
@@ -287,6 +414,15 @@ class ModelTrainer:
                 )
                 metrics_history["train"].append(train_metrics)
                 
+                # Log training metrics
+                mlflow_manager.log_metrics({
+                    "train_loss": train_metrics["loss"],
+                    "train_accuracy": train_metrics["accuracy"],
+                    "train_f1": train_metrics["f1"],
+                    "train_precision": train_metrics["precision"],
+                    "train_recall": train_metrics["recall"],
+                }, step=epoch)
+                
                 # Validate
                 val_metrics = test_step(
                     model=model,
@@ -299,6 +435,15 @@ class ModelTrainer:
                     device=self.device
                 )
                 metrics_history["val"].append(val_metrics)
+                
+                # Log validation metrics
+                mlflow_manager.log_metrics({
+                    "val_loss": val_metrics["loss"],
+                    "val_accuracy": val_metrics["accuracy"],
+                    "val_f1": val_metrics["f1"],
+                    "val_precision": val_metrics["precision"],
+                    "val_recall": val_metrics["recall"],
+                }, step=epoch)
             
             # Test
             logger.info("\n" + "="*40)
@@ -315,11 +460,26 @@ class ModelTrainer:
                 device=self.device
             )
             
+            # Log test metrics
+            mlflow_manager.log_metrics({
+                "test_loss": test_metrics["loss"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_f1": test_metrics["f1"],
+                "test_precision": test_metrics["precision"],
+                "test_recall": test_metrics["recall"],
+            })
+            
             # Save model
             os.makedirs(self.config.model_trainer_dir, exist_ok=True)
             model_path = os.path.join(self.config.model_trainer_dir, "model_3_vit.pth")
             torch.save(model.state_dict(), model_path)
             logger.info(f"✓ Model 3 saved to {model_path}")
+            
+            # Log model to MLflow
+            mlflow_manager.log_model(model, "model_3")
+            
+            # End run
+            mlflow_manager.end_run()
             
             return {
                 "model_name": "model_3",
@@ -335,13 +495,36 @@ class ModelTrainer:
     
     def train_model_4(self, model_2, model_3) -> Dict:
         """
-        Train Model 4 (Hybrid Fusion).
+        Train Model 4 (Hybrid Fusion) with MLflow logging.
         Requires Model 2 and Model 3 as components.
         """
         try:
             logger.info("="*80)
             logger.info("Training Model 4 (Hybrid Fusion)")
             logger.info("="*80)
+            
+            # Initialize MLflow
+            mlflow_manager = MLflowManager()
+            mlflow_manager.start_run(
+                run_name="model_4_hybrid",
+                tags={
+                    "model": "hybrid_fusion",
+                    "phase": "training",
+                    "dataset": "ai_vs_real"
+                }
+            )
+            
+            # Log hyperparameters
+            mlflow_manager.log_params({
+                "learning_rate": self.config.learning_rate,
+                "epochs": self.config.epochs,
+                "batch_size": self.config.batch_size,
+                "model": "hybrid_fusion",
+                "efficientnet_features": 1280,
+                "vit_features": 768,
+                "hidden_units": 512,
+                "dropout": 0.4,
+            })
             
             # Initialize hybrid model
             torch.manual_seed(RANDOM_SEED)
@@ -378,6 +561,15 @@ class ModelTrainer:
                 )
                 metrics_history["train"].append(train_metrics)
                 
+                # Log training metrics
+                mlflow_manager.log_metrics({
+                    "train_loss": train_metrics["loss"],
+                    "train_accuracy": train_metrics["accuracy"],
+                    "train_f1": train_metrics["f1"],
+                    "train_precision": train_metrics["precision"],
+                    "train_recall": train_metrics["recall"],
+                }, step=epoch)
+                
                 # Validate
                 val_metrics = test_step(
                     model=model,
@@ -390,6 +582,15 @@ class ModelTrainer:
                     device=self.device
                 )
                 metrics_history["val"].append(val_metrics)
+                
+                # Log validation metrics
+                mlflow_manager.log_metrics({
+                    "val_loss": val_metrics["loss"],
+                    "val_accuracy": val_metrics["accuracy"],
+                    "val_f1": val_metrics["f1"],
+                    "val_precision": val_metrics["precision"],
+                    "val_recall": val_metrics["recall"],
+                }, step=epoch)
             
             # Test
             logger.info("\n" + "="*40)
@@ -406,11 +607,26 @@ class ModelTrainer:
                 device=self.device
             )
             
+            # Log test metrics
+            mlflow_manager.log_metrics({
+                "test_loss": test_metrics["loss"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_f1": test_metrics["f1"],
+                "test_precision": test_metrics["precision"],
+                "test_recall": test_metrics["recall"],
+            })
+            
             # Save model
             os.makedirs(self.config.model_trainer_dir, exist_ok=True)
             model_path = os.path.join(self.config.model_trainer_dir, "model_4_hybrid.pth")
             torch.save(model.state_dict(), model_path)
             logger.info(f"✓ Model 4 saved to {model_path}")
+            
+            # Log model to MLflow
+            mlflow_manager.log_model(model, "model_4")
+            
+            # End run
+            mlflow_manager.end_run()
             
             return {
                 "model_name": "model_4",

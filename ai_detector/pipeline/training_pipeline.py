@@ -10,6 +10,8 @@ from ai_detector.components.data_ingestion import DataIngestion
 from ai_detector.components.data_validation import DataValidation
 from ai_detector.components.data_transformation import DataTransformation
 from ai_detector.components.model_trainer import ModelTrainer
+from ai_detector.components.model_evaluator import ModelEvaluator
+from ai_detector.entity.config_entity import ModelEvaluationConfig
 from ai_detector.entity.config_entity import (
     TrainingPipelineConfig,
     DataIngestionConfig,
@@ -112,6 +114,25 @@ class TrainingPipeline:
         except Exception as e:
             raise AIDetectorException(e, sys)
     
+    def run_model_evaluation(self, data_transformation_artifact):
+        """
+        Step 5: Evaluate all models.
+        """
+        try:
+            logger.info("\n" + "="*80)
+            logger.info("STEP 5: MODEL EVALUATION")
+            logger.info("="*80)
+            
+            config = ModelEvaluationConfig(self.training_pipeline_config)
+            component = ModelEvaluator(data_transformation_artifact, config)
+            artifact = component.initiate_model_evaluation()
+            
+            logger.info(f"✓ Model Evaluation complete")
+            return artifact
+            
+        except Exception as e:
+            raise AIDetectorException(e, sys)
+    
     def run_pipeline(self):
         """
         Main method - runs the entire pipeline.
@@ -133,6 +154,8 @@ class TrainingPipeline:
                 ingestion_artifact, 
                 validation_artifact
             )
+
+            evaluation_artifact = self.run_model_evaluation(transformation_artifact)
             
             # Step 4: Model Training
             training_results = self.run_model_training(transformation_artifact)

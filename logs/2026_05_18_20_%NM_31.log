@@ -4,3 +4,4 @@
 [2026-05-18 20:44:44,816] [INFO] [matplotlib.font_manager] - Failed to extract font properties from /usr/share/fonts/google-noto-sans-mono-cjk-vf-fonts/NotoSansMonoCJK-VF.ttc: Can not load face (SFNT font table missing; error code 0x8e)
 [2026-05-18 20:44:44,912] [INFO] [matplotlib.font_manager] - Failed to extract font properties from /usr/share/fonts/abattis-cantarell-vf-fonts/Cantarell-VF.otf: Can not load face (SFNT font table missing; error code 0x8e)
 [2026-05-18 20:44:44,970] [INFO] [matplotlib.font_manager] - generated new fontManager
+[2026-05-18 20:57:31,079] [INFO] [ai_detector.logging.logger] - Logginng initialized. Logs will be Saved to: logs/2026_05_18_20_%NM_31.log

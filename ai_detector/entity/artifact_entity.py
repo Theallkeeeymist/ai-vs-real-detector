@@ -58,12 +58,13 @@ class ModelArtifact:
 
 @dataclass
 class ModelEvaluationArtifact:
-    """Contains comparison metrics for all 4 mdoels."""
-
-    mdoel_artifacts: List[ModelArtifact]
-
+    """
+    Output from ModelEvaluator component.
+    """
+    evaluation_results: dict          # {model_name: {metrics, predictions, ...}}
+    comparison_report: object         # pandas DataFrame
+    confusion_matrices: dict          # {model_name: confusion_matrix}
     best_model_name: str
     best_model_accuracy: float
-
     comparison_report_path: str
-    comparison_matrices_path: str
+    confusion_matrices_path: str
