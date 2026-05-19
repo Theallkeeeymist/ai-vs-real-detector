@@ -35,7 +35,7 @@ class DataIngestion:
             total_size = len(df)
             train_size = int(train_ratio * total_size)
             val_size = int(val_ratio * total_size)
-            test_size = int(test_ratio * total_size)
+            test_size = total_size - train_size - val_size  # FIXED: Ensure sum equals total
 
             logger.info(f"Total: {total_size} | Train: {train_size} | Val: {val_size} | Test: {test_size}")
 

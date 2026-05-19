@@ -64,7 +64,7 @@ class TrainingPipeline:
             logger.info("="*80)
             
             config = DataValidationConfig(self.training_pipeline_config)
-            component = DataValidation(ingestion_artifact, config)
+            component = DataValidation(config, ingestion_artifact)  # FIXED: Correct argument order
             artifact = component.initiate_data_validation()
             
             if not artifact.is_valid:
