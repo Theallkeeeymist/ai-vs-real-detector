@@ -16,8 +16,8 @@ IMAGE_CATEGORIES = ["animals", "nature", "city", "food", "people"]
 DATA_MANIFEST_FILE = "data_manifest.yaml"
 
 IMAGE_SIZE = 224
-BATCH_SIZE = 32
-NUM_WORKERS = 4
+BATCH_SIZE = 8
+NUM_WORKERS = 2
 
 TRAIN_RATIO = 0.7
 VAL_RATIO = 0.15
@@ -55,7 +55,10 @@ HYBRID_DROPOUT = 0.4
 LEARNING_RATE = 0.001
 EPOCHS = 10
 DROPOUT_RATE = 0.5
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+if torch.cuda.is_available():
+    DEVICE = "cuda"
+else:
+    DEVICE = "cpu"
 
 MLFLOW_TRACKING_URI = "http://localhost:5000"
 MLFLOW_EXPERIMENT_NAME = "ai-vs-real-detector"

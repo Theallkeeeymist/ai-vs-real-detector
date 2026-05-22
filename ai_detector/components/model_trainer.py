@@ -44,7 +44,7 @@ class ModelTrainer:
         try:
             self.data_transformation_artifact = data_transformation_artifact
             self.config = config
-            self.device = config.device
+            self.device = config.devices
             
             # Get metric trackers
             self.acc_fn, self.f1_score, self.precision_score, self.recall_score = \

@@ -284,95 +284,95 @@ class ModelEvaluator:
         except Exception as e:
             raise AIDetectorException(f"Failed to generate detailed reports", sys)
     
-def initiate_model_evaluation(self) -> ModelEvaluationArtifact:
-    """
-    Main method - runs complete evaluation with MLflow logging.
-    """
-    try:
-        logger.info("\n" + "="*40)
-        logger.info("STARTING MODEL EVALUATION")
-        logger.info("="*40)
-        
-        # Initialize MLflow
-        mlflow_manager = MLflowManager()
-        mlflow_manager.start_run(
-            run_name="model_evaluation",
-            tags={
-                "phase": "evaluation",
-                "dataset": "ai_vs_real",
-                "models": "4_models_comparison"
-            }
-        )
-        
-        # Evaluate all models
-        evaluation_results = self.evaluate_all_models()
-        
-        # Log evaluation metrics for all models
-        for model_name, result in evaluation_results.items():
-            metrics = result["metrics"]
+    def initiate_model_evaluation(self) -> ModelEvaluationArtifact:
+        """
+        Main method - runs complete evaluation with MLflow logging.
+        """
+        try:
+            logger.info("\n" + "="*40)
+            logger.info("STARTING MODEL EVALUATION")
+            logger.info("="*40)
             
+            # Initialize MLflow
+            mlflow_manager = MLflowManager()
+            mlflow_manager.start_run(
+                run_name="model_evaluation",
+                tags={
+                    "phase": "evaluation",
+                    "dataset": "ai_vs_real",
+                    "models": "4_models_comparison"
+                }
+            )
+            
+            # Evaluate all models
+            evaluation_results = self.evaluate_all_models()
+            
+            # Log evaluation metrics for all models
+            for model_name, result in evaluation_results.items():
+                metrics = result["metrics"]
+                
+                mlflow_manager.log_metrics({
+                    f"{model_name}_accuracy": metrics.accuracy,
+                    f"{model_name}_precision": metrics.precision,
+                    f"{model_name}_recall": metrics.recall,
+                    f"{model_name}_f1": metrics.f1,
+                    f"{model_name}_roc_auc": metrics.roc_auc if metrics.roc_auc else 0.0,
+                })
+            
+            # Generate comparison report
+            report_df = self.generate_comparison_report(evaluation_results)
+            
+            # Log report as artifact
+            mlflow_manager.log_artifact(self.config.comparison_report_path)
+            
+            # Generate confusion matrices
+            confusion_matrices = self.generate_confusion_matrices(evaluation_results)
+            
+            # Log confusion matrix visualizations
+            mlflow_manager.log_artifact(self.config.confusion_matrices_path, artifact_type="directory")
+            
+            # Generate comparison plots
+            self.generate_comparison_plots(evaluation_results)
+            
+            # Generate detailed reports
+            self.generate_detailed_reports(evaluation_results)
+            
+            # Find best model
+            best_model_name = None
+            best_accuracy = -1
+            
+            for model_name, result in evaluation_results.items():
+                if result["metrics"].accuracy > best_accuracy:
+                    best_accuracy = result["metrics"].accuracy
+                    best_model_name = model_name
+            
+            # Log best model info
             mlflow_manager.log_metrics({
-                f"{model_name}_accuracy": metrics.accuracy,
-                f"{model_name}_precision": metrics.precision,
-                f"{model_name}_recall": metrics.recall,
-                f"{model_name}_f1": metrics.f1,
-                f"{model_name}_roc_auc": metrics.roc_auc if metrics.roc_auc else 0.0,
+                "best_model_accuracy": best_accuracy
             })
-        
-        # Generate comparison report
-        report_df = self.generate_comparison_report(evaluation_results)
-        
-        # Log report as artifact
-        mlflow_manager.log_artifact(self.config.comparison_report_path)
-        
-        # Generate confusion matrices
-        confusion_matrices = self.generate_confusion_matrices(evaluation_results)
-        
-        # Log confusion matrix visualizations
-        mlflow_manager.log_artifact(self.config.confusion_matrices_path, artifact_type="directory")
-        
-        # Generate comparison plots
-        self.generate_comparison_plots(evaluation_results)
-        
-        # Generate detailed reports
-        self.generate_detailed_reports(evaluation_results)
-        
-        # Find best model
-        best_model_name = None
-        best_accuracy = -1
-        
-        for model_name, result in evaluation_results.items():
-            if result["metrics"].accuracy > best_accuracy:
-                best_accuracy = result["metrics"].accuracy
-                best_model_name = model_name
-        
-        # Log best model info
-        mlflow_manager.log_metrics({
-            "best_model_accuracy": best_accuracy
-        })
-        mlflow_manager.log_params({
-            "best_model": best_model_name
-        })
-        
-        logger.info("\n" + "="*40)
-        logger.info(f"BEST MODEL: {best_model_name} with Accuracy: {best_accuracy:.4f}")
-        logger.info("="*40)
-        
-        # End MLflow run
-        mlflow_manager.end_run()
-        
-        # Create artifact
-        artifact = ModelEvaluationArtifact(
-            evaluation_results=evaluation_results,
-            comparison_report=report_df,
-            confusion_matrices=confusion_matrices,
-            best_model_name=best_model_name,
-            best_model_accuracy=best_accuracy,
-            comparison_report_path=self.config.comparison_report_path,
-            confusion_matrices_path=self.config.confusion_matrices_path
-        )
-        
-        return artifact
-        
-    except Exception as e:
-        raise AIDetectorException(e, sys)
+            mlflow_manager.log_params({
+                "best_model": best_model_name
+            })
+            
+            logger.info("\n" + "="*40)
+            logger.info(f"BEST MODEL: {best_model_name} with Accuracy: {best_accuracy:.4f}")
+            logger.info("="*40)
+            
+            # End MLflow run
+            mlflow_manager.end_run()
+            
+            # Create artifact
+            artifact = ModelEvaluationArtifact(
+                evaluation_results=evaluation_results,
+                comparison_report=report_df,
+                confusion_matrices=confusion_matrices,
+                best_model_name=best_model_name,
+                best_model_accuracy=best_accuracy,
+                comparison_report_path=self.config.comparison_report_path,
+                confusion_matrices_path=self.config.confusion_matrices_path
+            )
+            
+            return artifact
+            
+        except Exception as e:
+            raise AIDetectorException(e, sys)
