@@ -109,7 +109,7 @@ class ModelPredictor:
         Ensemble predictions from all 4 models.
         
         Args:
-            batch: Images
+            batch: Images [batch_size, 3, 224, 224]
             method: "mean", "max", or "voting"
             
         Returns:
@@ -117,6 +117,7 @@ class ModelPredictor:
         """
         try:
             all_results = self.predict_all_models(batch)
+            batch_size = batch.shape[0]
             
             if method == "mean":
                 # Average probabilities across models
@@ -134,8 +135,8 @@ class ModelPredictor:
                 predictions = np.array(
                     [all_results[m]["predictions"] for m in self.models.keys()]
                 )
-                ensemble_probs = np.zeros((predictions.shape[1], 2))
-                for i in range(predictions.shape[1]):
+                ensemble_probs = np.zeros((batch_size, 2))
+                for i in range(batch_size):
                     unique, counts = np.unique(predictions[:, i], return_counts=True)
                     for cls, cnt in zip(unique, counts):
                         ensemble_probs[i, cls] = cnt / len(self.models)
@@ -153,4 +154,4 @@ class ModelPredictor:
             }
             
         except Exception as e:
-            raise AIDetectorException(f"Ensemble prediction failed", sys)
+            raise AIDetectorException(f"Ensemble prediction failed: {str(e)}", sys)
