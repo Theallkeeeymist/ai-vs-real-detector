@@ -1,0 +1,16 @@
+[2026-05-25 04:57:40,767] [INFO] [ai_detector.logging.logger] - Logginng initialized. Logs will be Saved to: logs/2026_05_25_04_%NM_40.log
+[2026-05-25 04:57:44,228] [INFO] [ai_detector.logging.logger] - Starting model evaluation...
+[2026-05-25 04:57:44,228] [INFO] [ai_detector.logging.logger] - Loading data...
+[2026-05-25 04:57:44,228] [INFO] [ai_detector.logging.logger] - DataIngestion Initialized
+[2026-05-25 04:57:44,228] [INFO] [ai_detector.logging.logger] - Starting DataIngestion
+[2026-05-25 04:57:44,228] [INFO] [ai_detector.logging.logger] - Loading dataset from image_data
+[2026-05-25 04:57:44,232] [INFO] [ai_detector.logging.logger] - Classes: {'Ai_generated_dataset': 0, 'real_dataset': 1}
+[2026-05-25 04:57:44,234] [INFO] [ai_detector.logging.logger] - Total: 995 | Train: 696 | Val: 149 | Test: 150
+[2026-05-25 04:57:44,235] [INFO] [ai_detector.logging.logger] - Dataset split complete - Train: 696, Val: 149, Test: 150
+[2026-05-25 04:57:44,235] [INFO] [ai_detector.logging.logger] - Leakage Removed
+[2026-05-25 04:57:44,235] [INFO] [ai_detector.logging.logger] - Validating data...
+[2026-05-25 04:57:44,235] [INFO] [ai_detector.logging.logger] - DataValidation Initialized
+[2026-05-25 04:57:44,235] [INFO] [ai_detector.logging.logger] - Starting Data Validation
+[2026-05-25 04:57:44,235] [INFO] [ai_detector.logging.logger] - Validating datasets...
+[2026-05-25 04:57:44,235] [ERROR] [ai_detector.logging.logger] - Data Validation Failed: 'DataValidationConfig' object has no attribute 'train_dataset'
+[2026-05-25 04:57:44,235] [ERROR] [ai_detector.logging.logger] - Evaluation failed: Error in [/home/allkeeey/projects/ai-vs-real-detector/ai_detector/components/data_validation.py] at line [40]: Error in [/home/allkeeey/projects/ai-vs-real-detector/ai_detector/components/data_validation.py] at line [23]: 'DataValidationConfig' object has no attribute 'train_dataset'

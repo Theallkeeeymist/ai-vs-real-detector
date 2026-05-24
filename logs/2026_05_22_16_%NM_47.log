@@ -1,0 +1,4 @@
+[2026-05-22 16:44:47,213] [INFO] [ai_detector.logging.logger] - Logginng initialized. Logs will be Saved to: logs/2026_05_22_16_%NM_47.log
+[2026-05-22 16:44:47,214] [INFO] [ai_detector.logging.logger] - Starting AI vs Real Image Detector API...
+[2026-05-22 16:44:47,214] [INFO] [ai_detector.logging.logger] - Swagger Docs: http://localhost:8000/docs
+[2026-05-22 16:44:47,214] [INFO] [ai_detector.logging.logger] - ReDoc: http://localhost:8000/redoc
