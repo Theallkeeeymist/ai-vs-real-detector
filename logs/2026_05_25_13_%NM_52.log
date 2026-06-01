@@ -1,0 +1,356 @@
+[2026-05-25 13:41:52,256] [INFO] [ai_detector.logging.logger] - Logginng initialized. Logs will be Saved to: logs/2026_05_25_13_%NM_52.log
+[2026-05-25 13:42:04,152] [INFO] [ai_detector.logging.logger] - Initializing GPU memory management...
+[2026-05-25 13:42:04,164] [INFO] [ai_detector.logging.logger] - ✓ GPU memory cleared and optimized
+[2026-05-25 13:42:04,164] [INFO] [ai_detector.logging.logger] - ✓ Using GPU: NVIDIA GeForce GTX 1650 (3.90 GB)
+[2026-05-25 13:42:04,165] [INFO] [ai_detector.logging.logger] - GPU Memory - Total: 3.90GB | Allocated: 0.00GB | Free: 3.90GB | Used: 0.0%
+[2026-05-25 13:42:04,165] [INFO] [ai_detector.logging.logger] - Starting training...
+[2026-05-25 13:42:04,165] [INFO] [ai_detector.logging.logger] - TrainingPipeline initialized
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - Artifact directory: artifacts/2026_05_25_13_42_04
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - 
+
+
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - ============================================================================
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] -  STARTING COMPLETE TRAINING PIPELINE
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - ============================================================================
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - STEP 1: DATA INGESTION
+[2026-05-25 13:42:04,166] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:04,167] [INFO] [ai_detector.logging.logger] - DataIngestion Initialized
+[2026-05-25 13:42:04,167] [INFO] [ai_detector.logging.logger] - Starting DataIngestion
+[2026-05-25 13:42:04,167] [INFO] [ai_detector.logging.logger] - Loading dataset from image_data
+[2026-05-25 13:42:04,173] [INFO] [ai_detector.logging.logger] - Classes: {'Ai_generated_dataset': 0, 'real_dataset': 1}
+[2026-05-25 13:42:04,178] [INFO] [ai_detector.logging.logger] - Total: 995 | Train: 696 | Val: 149 | Test: 150
+[2026-05-25 13:42:04,185] [INFO] [ai_detector.logging.logger] - Dataset split complete - Train: 696, Val: 149, Test: 150
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - Leakage Removed
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - ✓ Data Ingestion complete
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - STEP 2: DATA VALIDATION
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - DataValidation Initialized
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - Starting Data Validation
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - Validating datasets...
+[2026-05-25 13:42:04,186] [INFO] [ai_detector.logging.logger] - Validation Passed: Train=696, val=149, test=150
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - DataValidation Complete
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - ✓ Data Validation complete
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - STEP 3: DATA TRANSFORMATION
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - DataTransformation initialized
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - Starting DataTransformation
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - Creating DataLoaders with transforms per split...
+[2026-05-25 13:42:04,187] [INFO] [ai_detector.logging.logger] - Creating loaders for model_1 and model_2...
+[2026-05-25 13:42:04,188] [INFO] [ai_detector.logging.logger] - ✓ Created loaders for model_1 and model_2
+[2026-05-25 13:42:04,188] [INFO] [ai_detector.logging.logger] - Creating loaders for model_3 and model_4...
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - ✓ Created loaders for model_3 and model_4
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - DataTransformation completed - No data leakage! (Hopefully LMAO)
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - ✓ Data Transformation complete
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - STEP 5: MODEL EVALUATION
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:04,189] [INFO] [ai_detector.logging.logger] - Loading models for evaluation...
+[2026-05-25 13:42:04,190] [INFO] [ai_detector.logging.logger] - ModelLoader initialized on device: cuda
+[2026-05-25 13:42:04,190] [INFO] [ai_detector.logging.logger] - Loading all 4 models...
+[2026-05-25 13:42:04,190] [INFO] [ai_detector.logging.logger] - Loading Model 1 (Custom CNN) from models/model_tiny_vgg_cnn.pth...
+[2026-05-25 13:42:04,751] [INFO] [ai_detector.logging.logger] - ✓ Model 1 loaded successfully
+[2026-05-25 13:42:04,751] [INFO] [ai_detector.logging.logger] - Loading Model 2 (EfficientNet B0) from models/model_1_resnet_b0.pth...
+[2026-05-25 13:42:05,147] [INFO] [ai_detector.logging.logger] - ✓ Model 2 loaded successfully
+[2026-05-25 13:42:05,148] [INFO] [ai_detector.logging.logger] - Loading Model 3 (ViT B-16) from models/model_2_ViT_b16.pth...
+[2026-05-25 13:42:09,652] [INFO] [ai_detector.logging.logger] - ✓ Model 3 loaded successfully
+[2026-05-25 13:42:09,653] [INFO] [ai_detector.logging.logger] - Loading Model 4 (Hybrid) from models/model_3_Hybrid.pth...
+[2026-05-25 13:42:10,147] [INFO] [ai_detector.logging.logger] - ✓ Model 4 loaded successfully
+[2026-05-25 13:42:10,148] [INFO] [ai_detector.logging.logger] - ✓ All 4 models loaded successfully
+[2026-05-25 13:42:10,148] [INFO] [ai_detector.logging.logger] - ✓ ModelEvaluator initialized
+[2026-05-25 13:42:10,148] [INFO] [ai_detector.logging.logger] - 
+========================================
+[2026-05-25 13:42:10,148] [INFO] [ai_detector.logging.logger] - STARTING MODEL EVALUATION
+[2026-05-25 13:42:10,148] [INFO] [ai_detector.logging.logger] - ========================================
+[2026-05-25 13:42:10,149] [INFO] [ai_detector.logging.logger] - MLflow tracking URI: http://localhost:5000
+[2026-05-25 13:42:10,255] [INFO] [ai_detector.logging.logger] - MLflow experiment: ai-vs-real-detector
+[2026-05-25 13:42:10,579] [INFO] [ai_detector.logging.logger] - MLflow run started: model_evaluation
+[2026-05-25 13:42:10,580] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:10,580] [INFO] [ai_detector.logging.logger] - EVALUATING ALL 4 MODELS ON TEST SET
+[2026-05-25 13:42:10,580] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:10,580] [INFO] [ai_detector.logging.logger] - 
+Evaluating model_1...
+[2026-05-25 13:42:23,285] [INFO] [ai_detector.logging.logger] - ✓ model_1 Evaluation Complete
+[2026-05-25 13:42:23,286] [INFO] [ai_detector.logging.logger] -   Accuracy: 0.9267
+[2026-05-25 13:42:23,286] [INFO] [ai_detector.logging.logger] -   Precision: 0.9141
+[2026-05-25 13:42:23,286] [INFO] [ai_detector.logging.logger] -   Recall: 1.0000
+[2026-05-25 13:42:23,286] [INFO] [ai_detector.logging.logger] -   F1: 0.9551
+[2026-05-25 13:42:23,286] [INFO] [ai_detector.logging.logger] -   ROC-AUC: 0.9112
+[2026-05-25 13:42:23,286] [INFO] [ai_detector.logging.logger] - 
+Evaluating model_2...
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] - ✓ model_2 Evaluation Complete
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] -   Accuracy: 0.8933
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] -   Precision: 0.8915
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] -   Recall: 0.9829
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] -   F1: 0.9350
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] -   ROC-AUC: 0.9466
+[2026-05-25 13:42:25,013] [INFO] [ai_detector.logging.logger] - 
+Evaluating model_3...
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] - ✓ model_3 Evaluation Complete
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] -   Accuracy: 0.6267
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] -   Precision: 1.0000
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] -   Recall: 0.5214
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] -   F1: 0.6854
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] -   ROC-AUC: 0.9005
+[2026-05-25 13:42:30,899] [INFO] [ai_detector.logging.logger] - 
+Evaluating model_4...
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] - ✓ model_4 Evaluation Complete
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] -   Accuracy: 0.9400
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] -   Precision: 0.9576
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] -   Recall: 0.9658
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] -   F1: 0.9617
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] -   ROC-AUC: 0.9767
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] - ✓ ALL MODELS EVALUATED
+[2026-05-25 13:42:37,140] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:38,595] [INFO] [ai_detector.logging.logger] - 
+Generating comparison report...
+[2026-05-25 13:42:38,622] [INFO] [ai_detector.logging.logger] - ✓ Saved report to artifacts/2026_05_25_13_42_04/model_evaluation/model_comparison.csv
+[2026-05-25 13:42:38,622] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:38,623] [INFO] [ai_detector.logging.logger] - MODEL COMPARISON REPORT
+[2026-05-25 13:42:38,623] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:38,638] [INFO] [ai_detector.logging.logger] -      Model Accuracy Precision  Recall F1-Score ROC-AUC
+0  model_1   0.9267    0.9141  1.0000   0.9551  0.9112
+1  model_2   0.8933    0.8915  0.9829   0.9350  0.9466
+2  model_3   0.6267    1.0000  0.5214   0.6854  0.9005
+3  model_4   0.9400    0.9576  0.9658   0.9617  0.9767
+[2026-05-25 13:42:38,638] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:38,736] [INFO] [ai_detector.logging.logger] - Logged artifact: artifacts/2026_05_25_13_42_04/model_evaluation/model_comparison.csv
+[2026-05-25 13:42:38,736] [INFO] [ai_detector.logging.logger] - 
+Generating confusion matrices...
+[2026-05-25 13:42:39,189] [INFO] [ai_detector.logging.logger] - ✓ Saved confusion matrix to artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices/model_1_confusion_matrix.png
+[2026-05-25 13:42:39,469] [INFO] [ai_detector.logging.logger] - ✓ Saved confusion matrix to artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices/model_2_confusion_matrix.png
+[2026-05-25 13:42:39,769] [INFO] [ai_detector.logging.logger] - ✓ Saved confusion matrix to artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices/model_3_confusion_matrix.png
+[2026-05-25 13:42:40,018] [INFO] [ai_detector.logging.logger] - ✓ Saved confusion matrix to artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices/model_4_confusion_matrix.png
+[2026-05-25 13:42:41,412] [INFO] [ai_detector.logging.logger] - ✓ Saved all confusion matrices to artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices/all_confusion_matrices.png
+[2026-05-25 13:42:41,412] [INFO] [ai_detector.logging.logger] - ✓ Confusion matrices generated
+[2026-05-25 13:42:41,633] [INFO] [ai_detector.logging.logger] - Logged artifact: artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices
+[2026-05-25 13:42:41,634] [INFO] [ai_detector.logging.logger] - 
+Generating comparison plots...
+[2026-05-25 13:42:42,555] [INFO] [ai_detector.logging.logger] - ✓ Saved comparison plot to artifacts/2026_05_25_13_42_04/model_evaluation/confusion_matrices/model_comparison.png
+[2026-05-25 13:42:42,555] [INFO] [ai_detector.logging.logger] - ✓ Comparison plots generated
+[2026-05-25 13:42:42,555] [INFO] [ai_detector.logging.logger] - 
+Generating detailed reports...
+[2026-05-25 13:42:42,556] [INFO] [ai_detector.logging.logger] - ✓ Saved report for model_1
+[2026-05-25 13:42:42,556] [INFO] [ai_detector.logging.logger] - ✓ Saved report for model_2
+[2026-05-25 13:42:42,557] [INFO] [ai_detector.logging.logger] - ✓ Saved report for model_3
+[2026-05-25 13:42:42,557] [INFO] [ai_detector.logging.logger] - ✓ Saved report for model_4
+[2026-05-25 13:42:42,677] [INFO] [ai_detector.logging.logger] - Logged 1 parameters
+[2026-05-25 13:42:42,677] [INFO] [ai_detector.logging.logger] - 
+========================================
+[2026-05-25 13:42:42,677] [INFO] [ai_detector.logging.logger] - BEST MODEL: model_4 with Accuracy: 0.9400
+[2026-05-25 13:42:42,677] [INFO] [ai_detector.logging.logger] - ========================================
+[2026-05-25 13:42:42,819] [INFO] [ai_detector.logging.logger] - MLflow run ended
+[2026-05-25 13:42:42,819] [INFO] [ai_detector.logging.logger] - ✓ Model Evaluation complete
+[2026-05-25 13:42:42,822] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-05-25 13:42:42,822] [INFO] [ai_detector.logging.logger] - STEP 4: MODEL TRAINING
+[2026-05-25 13:42:42,822] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:42,844] [INFO] [ai_detector.logging.logger] - ModelTrainer initialized
+[2026-05-25 13:42:42,844] [INFO] [ai_detector.logging.logger] - Starting Model Trainer - Training All 4 Models
+[2026-05-25 13:42:42,844] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:42,845] [INFO] [ai_detector.logging.logger] - Training Model 1 (Custom CNN)
+[2026-05-25 13:42:42,845] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:42:42,845] [INFO] [ai_detector.logging.logger] - MLflow tracking URI: http://localhost:5000
+[2026-05-25 13:42:42,905] [INFO] [ai_detector.logging.logger] - MLflow experiment: ai-vs-real-detector
+[2026-05-25 13:42:43,212] [INFO] [ai_detector.logging.logger] - MLflow run started: model_1_custom_cnn
+[2026-05-25 13:42:43,717] [INFO] [ai_detector.logging.logger] - Logged 7 parameters
+[2026-05-25 13:42:43,885] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 1/10 ========================================
+[2026-05-25 13:43:03,739] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7184 | Loss: 0.6749
+[2026-05-25 13:43:03,739] [INFO] [ai_detector.logging.logger] - Precision: 0.7412 | Recall: 0.9493 | F1: 0.8325
+[2026-05-25 13:43:05,583] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5926
+[2026-05-25 13:43:05,583] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 13:43:05,878] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 2/10 ========================================
+[2026-05-25 13:43:23,760] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7371 | Loss: 0.6065
+[2026-05-25 13:43:23,760] [INFO] [ai_detector.logging.logger] - Precision: 0.7371 | Recall: 1.0000 | F1: 0.8486
+[2026-05-25 13:43:25,521] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5650
+[2026-05-25 13:43:25,521] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 13:43:25,815] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 3/10 ========================================
+[2026-05-25 13:43:43,228] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7371 | Loss: 0.5947
+[2026-05-25 13:43:43,228] [INFO] [ai_detector.logging.logger] - Precision: 0.7371 | Recall: 1.0000 | F1: 0.8486
+[2026-05-25 13:43:44,896] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5528
+[2026-05-25 13:43:44,896] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 13:43:45,191] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 4/10 ========================================
+[2026-05-25 13:44:02,411] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7543 | Loss: 0.5513
+[2026-05-25 13:44:02,411] [INFO] [ai_detector.logging.logger] - Precision: 0.7599 | Recall: 0.9747 | F1: 0.8540
+[2026-05-25 13:44:04,144] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5450
+[2026-05-25 13:44:04,144] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 13:44:04,451] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 5/10 ========================================
+[2026-05-25 13:44:22,033] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7457 | Loss: 0.5752
+[2026-05-25 13:44:22,033] [INFO] [ai_detector.logging.logger] - Precision: 0.7449 | Recall: 0.9961 | F1: 0.8524
+[2026-05-25 13:44:23,753] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.8725 | Loss: 0.3637
+[2026-05-25 13:44:23,753] [INFO] [ai_detector.logging.logger] - Precision: 0.8750 | Recall: 0.9739 | F1: 0.9218
+[2026-05-25 13:44:24,055] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 6/10 ========================================
+[2026-05-25 13:44:41,777] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8046 | Loss: 0.4557
+[2026-05-25 13:44:41,777] [INFO] [ai_detector.logging.logger] - Precision: 0.8179 | Recall: 0.9454 | F1: 0.8770
+[2026-05-25 13:44:43,510] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.8591 | Loss: 0.3309
+[2026-05-25 13:44:43,510] [INFO] [ai_detector.logging.logger] - Precision: 0.9352 | Recall: 0.8783 | F1: 0.9058
+[2026-05-25 13:44:43,806] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 7/10 ========================================
+[2026-05-25 13:45:02,574] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7974 | Loss: 0.4565
+[2026-05-25 13:45:02,574] [INFO] [ai_detector.logging.logger] - Precision: 0.8079 | Recall: 0.9513 | F1: 0.8738
+[2026-05-25 13:45:04,249] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9128 | Loss: 0.3053
+[2026-05-25 13:45:04,249] [INFO] [ai_detector.logging.logger] - Precision: 0.9113 | Recall: 0.9826 | F1: 0.9456
+[2026-05-25 13:45:04,551] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 8/10 ========================================
+[2026-05-25 13:45:22,088] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8362 | Loss: 0.4062
+[2026-05-25 13:45:22,096] [INFO] [ai_detector.logging.logger] - Precision: 0.8399 | Recall: 0.9610 | F1: 0.8964
+[2026-05-25 13:45:23,685] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9060 | Loss: 0.2662
+[2026-05-25 13:45:23,685] [INFO] [ai_detector.logging.logger] - Precision: 0.9244 | Recall: 0.9565 | F1: 0.9402
+[2026-05-25 13:45:23,986] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 9/10 ========================================
+[2026-05-25 13:45:41,968] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8175 | Loss: 0.4149
+[2026-05-25 13:45:41,968] [INFO] [ai_detector.logging.logger] - Precision: 0.8260 | Recall: 0.9532 | F1: 0.8851
+[2026-05-25 13:45:43,578] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9128 | Loss: 0.3294
+[2026-05-25 13:45:43,578] [INFO] [ai_detector.logging.logger] - Precision: 0.9722 | Recall: 0.9130 | F1: 0.9417
+[2026-05-25 13:45:43,883] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 10/10 ========================================
+[2026-05-25 13:46:00,871] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8075 | Loss: 0.4394
+[2026-05-25 13:46:00,871] [INFO] [ai_detector.logging.logger] - Precision: 0.8206 | Recall: 0.9454 | F1: 0.8786
+[2026-05-25 13:46:02,523] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9128 | Loss: 0.3019
+[2026-05-25 13:46:02,523] [INFO] [ai_detector.logging.logger] - Precision: 0.9113 | Recall: 0.9826 | F1: 0.9456
+[2026-05-25 13:46:02,833] [INFO] [ai_detector.logging.logger] - 
+========================================
+[2026-05-25 13:46:02,833] [INFO] [ai_detector.logging.logger] - TESTING Model 1
+[2026-05-25 13:46:02,833] [INFO] [ai_detector.logging.logger] - ========================================
+[2026-05-25 13:46:04,610] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.8600 | Loss: 0.3867
+[2026-05-25 13:46:04,610] [INFO] [ai_detector.logging.logger] - Precision: 0.8871 | Recall: 0.9402 | F1: 0.9129
+[2026-05-25 13:46:05,102] [INFO] [ai_detector.logging.logger] - ✓ Model 1 saved to artifacts/2026_05_25_13_42_04/model_trainer/model_1_custom_cnn.pth
+[2026-05-25 13:46:23,827] [INFO] [ai_detector.logging.logger] - Logged model to model_1
+[2026-05-25 13:46:23,983] [INFO] [ai_detector.logging.logger] - MLflow run ended
+[2026-05-25 13:46:23,984] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:46:23,984] [INFO] [ai_detector.logging.logger] - Training Model 2 (EfficientNet B0)
+[2026-05-25 13:46:23,984] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:46:23,984] [INFO] [ai_detector.logging.logger] - MLflow tracking URI: http://localhost:5000
+[2026-05-25 13:46:24,040] [INFO] [ai_detector.logging.logger] - MLflow experiment: ai-vs-real-detector
+[2026-05-25 13:46:24,338] [INFO] [ai_detector.logging.logger] - MLflow run started: model_2_efficientnet
+[2026-05-25 13:46:24,765] [INFO] [ai_detector.logging.logger] - Logged 6 parameters
+[2026-05-25 13:46:25,080] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 1/10 ========================================
+[2026-05-25 13:46:50,090] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8506 | Loss: 0.3720
+[2026-05-25 13:46:50,098] [INFO] [ai_detector.logging.logger] - Precision: 0.8971 | Recall: 0.9006 | F1: 0.8988
+[2026-05-25 13:46:52,525] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9262 | Loss: 0.2600
+[2026-05-25 13:46:52,525] [INFO] [ai_detector.logging.logger] - Precision: 0.9194 | Recall: 0.9913 | F1: 0.9540
+[2026-05-25 13:46:52,827] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 2/10 ========================================
+[2026-05-25 13:47:23,801] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8793 | Loss: 0.2720
+[2026-05-25 13:47:23,801] [INFO] [ai_detector.logging.logger] - Precision: 0.9214 | Recall: 0.9142 | F1: 0.9178
+[2026-05-25 13:47:26,169] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.8322 | Loss: 0.2856
+[2026-05-25 13:47:26,169] [INFO] [ai_detector.logging.logger] - Precision: 0.9891 | Recall: 0.7913 | F1: 0.8792
+[2026-05-25 13:47:26,475] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 3/10 ========================================
+[2026-05-25 13:47:57,542] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8649 | Loss: 0.3077
+[2026-05-25 13:47:57,542] [INFO] [ai_detector.logging.logger] - Precision: 0.9116 | Recall: 0.9045 | F1: 0.9080
+[2026-05-25 13:47:59,904] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9463 | Loss: 0.1344
+[2026-05-25 13:47:59,904] [INFO] [ai_detector.logging.logger] - Precision: 0.9496 | Recall: 0.9826 | F1: 0.9658
+[2026-05-25 13:48:00,208] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 4/10 ========================================
+[2026-05-25 13:48:31,213] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.9181 | Loss: 0.2208
+[2026-05-25 13:48:31,214] [INFO] [ai_detector.logging.logger] - Precision: 0.9471 | Recall: 0.9415 | F1: 0.9443
+[2026-05-25 13:48:33,641] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9530 | Loss: 0.1278
+[2026-05-25 13:48:33,642] [INFO] [ai_detector.logging.logger] - Precision: 0.9500 | Recall: 0.9913 | F1: 0.9702
+[2026-05-25 13:48:33,946] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 5/10 ========================================
+[2026-05-25 13:49:05,024] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.9037 | Loss: 0.2585
+[2026-05-25 13:49:05,025] [INFO] [ai_detector.logging.logger] - Precision: 0.9256 | Recall: 0.9454 | F1: 0.9354
+[2026-05-25 13:49:07,476] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9262 | Loss: 0.1539
+[2026-05-25 13:49:07,476] [INFO] [ai_detector.logging.logger] - Precision: 0.9727 | Recall: 0.9304 | F1: 0.9511
+[2026-05-25 13:49:07,781] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 6/10 ========================================
+[2026-05-25 13:49:38,761] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.8951 | Loss: 0.2496
+[2026-05-25 13:49:38,762] [INFO] [ai_detector.logging.logger] - Precision: 0.9247 | Recall: 0.9337 | F1: 0.9292
+[2026-05-25 13:49:41,178] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9329 | Loss: 0.1673
+[2026-05-25 13:49:41,178] [INFO] [ai_detector.logging.logger] - Precision: 0.9730 | Recall: 0.9391 | F1: 0.9558
+[2026-05-25 13:49:41,480] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 7/10 ========================================
+[2026-05-25 13:50:12,587] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.9296 | Loss: 0.1799
+[2026-05-25 13:50:12,587] [INFO] [ai_detector.logging.logger] - Precision: 0.9479 | Recall: 0.9571 | F1: 0.9525
+[2026-05-25 13:50:14,951] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9664 | Loss: 0.0712
+[2026-05-25 13:50:14,951] [INFO] [ai_detector.logging.logger] - Precision: 0.9825 | Recall: 0.9739 | F1: 0.9782
+[2026-05-25 13:50:15,247] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 8/10 ========================================
+[2026-05-25 13:50:46,447] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.9167 | Loss: 0.2035
+[2026-05-25 13:50:46,448] [INFO] [ai_detector.logging.logger] - Precision: 0.9400 | Recall: 0.9474 | F1: 0.9437
+[2026-05-25 13:50:48,804] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9664 | Loss: 0.0668
+[2026-05-25 13:50:48,804] [INFO] [ai_detector.logging.logger] - Precision: 1.0000 | Recall: 0.9565 | F1: 0.9778
+[2026-05-25 13:50:49,108] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 9/10 ========================================
+[2026-05-25 13:51:20,189] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.9167 | Loss: 0.2407
+[2026-05-25 13:51:20,189] [INFO] [ai_detector.logging.logger] - Precision: 0.9367 | Recall: 0.9513 | F1: 0.9439
+[2026-05-25 13:51:22,630] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9933 | Loss: 0.0493
+[2026-05-25 13:51:22,630] [INFO] [ai_detector.logging.logger] - Precision: 1.0000 | Recall: 0.9913 | F1: 0.9956
+[2026-05-25 13:51:22,937] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 10/10 ========================================
+[2026-05-25 13:51:53,797] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.9353 | Loss: 0.1631
+[2026-05-25 13:51:53,797] [INFO] [ai_detector.logging.logger] - Precision: 0.9570 | Recall: 0.9552 | F1: 0.9561
+[2026-05-25 13:51:56,221] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9530 | Loss: 0.0980
+[2026-05-25 13:51:56,221] [INFO] [ai_detector.logging.logger] - Precision: 0.9909 | Recall: 0.9478 | F1: 0.9689
+[2026-05-25 13:51:56,527] [INFO] [ai_detector.logging.logger] - 
+========================================
+[2026-05-25 13:51:56,527] [INFO] [ai_detector.logging.logger] - TESTING Model 2
+[2026-05-25 13:51:56,527] [INFO] [ai_detector.logging.logger] - ========================================
+[2026-05-25 13:51:58,571] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.9533 | Loss: 0.0890
+[2026-05-25 13:51:58,571] [INFO] [ai_detector.logging.logger] - Precision: 0.9661 | Recall: 0.9744 | F1: 0.9702
+[2026-05-25 13:51:59,120] [INFO] [ai_detector.logging.logger] - ✓ Model 2 saved to artifacts/2026_05_25_13_42_04/model_trainer/model_2_efficientnet.pth
+[2026-05-25 13:52:16,784] [INFO] [ai_detector.logging.logger] - Logged model to model_2
+[2026-05-25 13:52:16,929] [INFO] [ai_detector.logging.logger] - MLflow run ended
+[2026-05-25 13:52:16,949] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:52:16,949] [INFO] [ai_detector.logging.logger] - Training Model 3 (ViT B-16)
+[2026-05-25 13:52:16,949] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-05-25 13:52:16,949] [INFO] [ai_detector.logging.logger] - MLflow tracking URI: http://localhost:5000
+[2026-05-25 13:52:17,002] [INFO] [ai_detector.logging.logger] - MLflow experiment: ai-vs-real-detector
+[2026-05-25 13:52:17,303] [INFO] [ai_detector.logging.logger] - MLflow run started: model_3_vit
+[2026-05-25 13:52:17,665] [INFO] [ai_detector.logging.logger] - Logged 5 parameters
+[2026-05-25 13:52:20,078] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 1/10 ========================================
+[2026-05-25 13:55:49,804] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7184 | Loss: 0.6808
+[2026-05-25 13:55:49,805] [INFO] [ai_detector.logging.logger] - Precision: 0.7369 | Recall: 0.9610 | F1: 0.8342
+[2026-05-25 13:56:04,281] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.4855
+[2026-05-25 13:56:04,282] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 13:56:04,608] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 2/10 ========================================
+[2026-05-25 13:59:32,864] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7112 | Loss: 0.6551
+[2026-05-25 13:59:32,864] [INFO] [ai_detector.logging.logger] - Precision: 0.7415 | Recall: 0.9337 | F1: 0.8266
+[2026-05-25 13:59:47,206] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.6373
+[2026-05-25 13:59:47,207] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 13:59:47,535] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 3/10 ========================================
+[2026-05-25 14:03:15,785] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7011 | Loss: 0.5998
+[2026-05-25 14:03:15,794] [INFO] [ai_detector.logging.logger] - Precision: 0.7417 | Recall: 0.9123 | F1: 0.8182
+[2026-05-25 14:03:30,092] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7383 | Loss: 0.6490
+[2026-05-25 14:03:30,092] [INFO] [ai_detector.logging.logger] - Precision: 0.8065 | Recall: 0.8696 | F1: 0.8368
+[2026-05-25 14:03:30,410] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 4/10 ========================================
+[2026-05-25 14:06:58,505] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7155 | Loss: 0.5933
+[2026-05-25 14:06:58,514] [INFO] [ai_detector.logging.logger] - Precision: 0.7512 | Recall: 0.9181 | F1: 0.8263
+[2026-05-25 14:07:12,765] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5008
+[2026-05-25 14:07:12,766] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 14:07:13,084] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 5/10 ========================================
+[2026-05-25 14:10:41,108] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7256 | Loss: 0.5841
+[2026-05-25 14:10:41,116] [INFO] [ai_detector.logging.logger] - Precision: 0.7347 | Recall: 0.9825 | F1: 0.8407
+[2026-05-25 14:10:55,431] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5529
+[2026-05-25 14:10:55,431] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 14:10:55,755] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 6/10 ========================================
+[2026-05-25 14:14:23,910] [INFO] [ai_detector.logging.logger] - [TRAIN] Accuracy: 0.7356 | Loss: 0.5895
+[2026-05-25 14:14:23,911] [INFO] [ai_detector.logging.logger] - Precision: 0.7367 | Recall: 0.9981 | F1: 0.8477
+[2026-05-25 14:14:38,114] [INFO] [ai_detector.logging.logger] - [TEST]  Accuracy: 0.7718 | Loss: 0.5576
+[2026-05-25 14:14:38,114] [INFO] [ai_detector.logging.logger] - Precision: 0.7718 | Recall: 1.0000 | F1: 0.8712
+[2026-05-25 14:14:38,439] [INFO] [ai_detector.logging.logger] - 
+======================================== Epoch 7/10 ========================================
