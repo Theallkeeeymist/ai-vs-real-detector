@@ -11,7 +11,7 @@ from ai_detector.exception.exception import AIDetectorException
 from ai_detector.entity.config_entity import ModelTrainerConfig
 from ai_detector.entity.artifact_entity import ModelEvaluationArtifact, DataTransformationArtifact
 from ai_detector.utils.ml_utils.models import (
-    AiOrReal,
+    TinyVGG,
     create_efficientnet_model,
     create_vit_model,
     AIHybrid
@@ -91,10 +91,9 @@ class ModelTrainer:
             
             # Initialize model
             torch.manual_seed(RANDOM_SEED)
-            model = AiOrReal(
-                input_shape=CUSTOM_CNN_INPUT,
-                hidden_units=CUSTOM_CNN_HIDDEN,
-                output_shape=CUSTOM_CNN_OUTPUT
+            model = TinyVGG(
+                in_channels=CUSTOM_CNN_INPUT,
+                num_classes=CUSTOM_CNN_OUTPUT
             ).to(self.device)
             
             # Optimizer

@@ -2,51 +2,53 @@ import torch, torchvision
 import torch.nn as nn
 from torch.nn.modules.activation import ReLU
 
-# Model 1: Custom CNN(Tiny VGG)
-class AiOrReal(nn.Module):
-    def __init__(self, input_shape: int, hidden_units: int, output_shape: int):
+# Model 1: Custom CNN (Tiny VGG)
+class TinyVGG(nn.Module):
+    """
+    TinyVGG v2 — upgraded from AiOrReal:
+      1. Two Conv layers per block (standard VGG design for richer feature hierarchy)
+      2. Global Average Pooling replaces AdaptiveAvgPool2d(4,4)
+         → classifier input: 128 dims instead of 2048, massively reducing overfit on small data
+    """
+    def __init__(self, in_channels: int = 3, num_classes: int = 2):
         super().__init__()
 
-        self.block_1 = nn.Sequential(
-            nn.Conv2d(in_channels=input_shape,
-                     out_channels=32,
-                     kernel_size=3,
-                     stride=1,
-                     padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2,
-                        stride=2)
-        )
-        self.block_2 = nn.Sequential(
-            nn.Conv2d(in_channels=32,
-                     out_channels=64,
-                     kernel_size=3,
-                     padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(2)
-        )
-        self.block_3 = nn.Sequential(
-            nn.Conv2d(in_channels = 64, out_channels = 128, kernel_size = 3, padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(2)
-        )
+        def conv_block(in_c: int, out_c: int) -> nn.Sequential:
+            return nn.Sequential(
+                nn.Conv2d(in_c,  out_c, kernel_size=3, padding=1),
+                nn.BatchNorm2d(out_c),
+                nn.ReLU(),
+                nn.Conv2d(out_c, out_c, kernel_size=3, padding=1),  # second conv
+                nn.BatchNorm2d(out_c),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=2)
+            )
+
+        self.block_1 = conv_block(in_channels, 32)   # 3  → 32 channels
+        self.block_2 = conv_block(32, 64)             # 32 → 64 channels
+        self.block_3 = conv_block(64, 128)            # 64 → 128 channels
+
+        # Global Average Pool: (N, 128, H, W) → (N, 128, 1, 1)
+        self.pool = nn.AdaptiveAvgPool2d((1, 1))
+
+        # Classifier: 128 input dims
         self.classifier = nn.Sequential(
             nn.Flatten(),
-            nn.Dropout(p=0.5),
-            nn.Linear(in_features=128*28*28,
-                     out_features=128),
+            nn.Dropout(0.5),
+            nn.Linear(128, 256),
             nn.ReLU(),
-            nn.Linear(in_features=128,
-                     out_features=output_shape)
+            nn.Dropout(0.3),          # second dropout layer
+            nn.Linear(256, num_classes)
         )
 
-    def forward(self, x:torch.Tensor):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.block_1(x)
         x = self.block_2(x)
         x = self.block_3(x)
-        x = self.classifier(x)
+        x = self.pool(x)
+        return self.classifier(x)
 
-        return x
+AiOrReal = TinyVGG
 
 # Model 2: EfficientNet B0
 def create_efficientnet_model(device: str = "cuda") -> nn.Module:

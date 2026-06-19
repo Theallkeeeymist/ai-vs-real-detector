@@ -1,0 +1,75 @@
+[2026-06-19 19:18:27,848] [INFO] [ai_detector.logging.logger] - Logginng initialized. Logs will be Saved to: logs/2026_06_19_19_%NM_27.log
+[2026-06-19 19:18:34,526] [INFO] [ai_detector.logging.logger] - Initializing GPU memory management...
+[2026-06-19 19:18:34,531] [INFO] [ai_detector.logging.logger] - ✓ GPU memory cleared and optimized
+[2026-06-19 19:18:34,532] [INFO] [ai_detector.logging.logger] - ✓ Using GPU: NVIDIA GeForce GTX 1650 (3.90 GB)
+[2026-06-19 19:18:34,532] [INFO] [ai_detector.logging.logger] - GPU Memory - Total: 3.90GB | Allocated: 0.00GB | Free: 3.90GB | Used: 0.0%
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - Starting training...
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - TrainingPipeline initialized
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - Artifact directory: artifacts/2026_06_19_19_18_34
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - 
+
+
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - ============================================================================
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] -  STARTING COMPLETE TRAINING PIPELINE
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - ============================================================================
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - STEP 1: DATA INGESTION
+[2026-06-19 19:18:34,533] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-06-19 19:18:34,534] [INFO] [ai_detector.logging.logger] - DataIngestion Initialized
+[2026-06-19 19:18:34,534] [INFO] [ai_detector.logging.logger] - Starting DataIngestion
+[2026-06-19 19:18:34,534] [INFO] [ai_detector.logging.logger] - Loading dataset from image_data
+[2026-06-19 19:18:34,536] [INFO] [ai_detector.logging.logger] - Classes: {'Ai_generated_dataset': 0, 'real_dataset': 1}
+[2026-06-19 19:18:34,539] [INFO] [ai_detector.logging.logger] - Total: 995 | Train: 696 | Val: 149 | Test: 150
+[2026-06-19 19:18:34,552] [INFO] [ai_detector.logging.logger] - Dataset split complete - Train: 696, Val: 149, Test: 150
+[2026-06-19 19:18:34,552] [INFO] [ai_detector.logging.logger] - Leakage Removed
+[2026-06-19 19:18:34,552] [INFO] [ai_detector.logging.logger] - ✓ Data Ingestion complete
+[2026-06-19 19:18:34,552] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - STEP 2: DATA VALIDATION
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - DataValidation Initialized
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - Starting Data Validation
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - Validating datasets...
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - Validation Passed: Train=696, val=149, test=150
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - DataValidation Complete
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - ✓ Data Validation complete
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - STEP 3: DATA TRANSFORMATION
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - DataTransformation initialized
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - Starting DataTransformation
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - Creating DataLoaders with transforms per split...
+[2026-06-19 19:18:34,553] [INFO] [ai_detector.logging.logger] - Creating loaders for model_1 and model_2...
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - ✓ Created loaders for model_1 and model_2
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - Creating loaders for model_3 and model_4...
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - ✓ Created loaders for model_3 and model_4
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - DataTransformation completed - No data leakage! (Hopefully LMAO)
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - ✓ Data Transformation complete
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - 
+================================================================================
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - STEP 5: MODEL EVALUATION
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - ================================================================================
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - Loading models for evaluation...
+[2026-06-19 19:18:34,555] [INFO] [ai_detector.logging.logger] - ModelLoader initialized on device: cuda
+[2026-06-19 19:18:34,556] [INFO] [ai_detector.logging.logger] - Loading all 4 models...
+[2026-06-19 19:18:34,556] [INFO] [ai_detector.logging.logger] - Loading Model 1 (Custom CNN) from models/model_tiny_vgg_cnn.pth...
+[2026-06-19 19:18:34,972] [INFO] [ai_detector.logging.logger] - ✓ Model 1 loaded successfully
+[2026-06-19 19:18:34,972] [INFO] [ai_detector.logging.logger] - Loading Model 2 (EfficientNet B0) from models/model_1_resnet_b0.pth...
+[2026-06-19 19:18:35,368] [INFO] [ai_detector.logging.logger] - ✓ Model 2 loaded successfully
+[2026-06-19 19:18:35,369] [INFO] [ai_detector.logging.logger] - Loading Model 3 (ViT B-16) from models/model_2_ViT_b16.pth...
+[2026-06-19 19:18:38,550] [INFO] [ai_detector.logging.logger] - ✓ Model 3 loaded successfully
+[2026-06-19 19:18:38,552] [INFO] [ai_detector.logging.logger] - Loading Model 4 (Hybrid) from models/model_3_Hybrid.pth...
+[2026-06-19 19:18:39,129] [INFO] [ai_detector.logging.logger] - ✓ Model 4 loaded successfully
+[2026-06-19 19:18:39,130] [INFO] [ai_detector.logging.logger] - ✓ All 4 models loaded successfully
+[2026-06-19 19:18:39,130] [INFO] [ai_detector.logging.logger] - ✓ ModelEvaluator initialized
+[2026-06-19 19:18:39,130] [INFO] [ai_detector.logging.logger] - 
+========================================
+[2026-06-19 19:18:39,130] [INFO] [ai_detector.logging.logger] - STARTING MODEL EVALUATION
+[2026-06-19 19:18:39,130] [INFO] [ai_detector.logging.logger] - ========================================
+[2026-06-19 19:18:39,131] [INFO] [ai_detector.logging.logger] - MLflow tracking URI: http://localhost:5000
+[2026-06-19 19:18:39,589] [WARNING] [urllib3.connectionpool] - Retrying (Retry(total=6, connect=6, read=7, redirect=7, status=7)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=5000): Failed to establish a new connection: [Errno 111] Connection refused")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=ai-vs-real-detector
+[2026-06-19 19:18:44,260] [WARNING] [urllib3.connectionpool] - Retrying (Retry(total=5, connect=5, read=7, redirect=7, status=7)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=5000): Failed to establish a new connection: [Errno 111] Connection refused")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=ai-vs-real-detector
+[2026-06-19 19:18:53,182] [WARNING] [urllib3.connectionpool] - Retrying (Retry(total=4, connect=4, read=7, redirect=7, status=7)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=5000): Failed to establish a new connection: [Errno 111] Connection refused")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=ai-vs-real-detector
+[2026-06-19 19:19:09,430] [WARNING] [urllib3.connectionpool] - Retrying (Retry(total=3, connect=3, read=7, redirect=7, status=7)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=5000): Failed to establish a new connection: [Errno 111] Connection refused")': /api/2.0/mlflow/experiments/get-by-name?experiment_name=ai-vs-real-detector

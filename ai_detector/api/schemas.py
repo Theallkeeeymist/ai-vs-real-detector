@@ -78,7 +78,7 @@ class ModelInfo(BaseModel):
             "example": {
                 "model_name": "model_1",
                 "model_type": "Custom CNN (TinyVGG)",
-                "parameters": 5234892
+                "parameters": 321442
             }
         }
  

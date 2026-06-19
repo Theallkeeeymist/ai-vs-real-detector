@@ -8,7 +8,7 @@ from typing import Dict
 from ai_detector.logging.logger import logger
 from ai_detector.exception.exception import AIDetectorException
 from ai_detector.utils.ml_utils.models import (
-    AiOrReal,
+    TinyVGG,
     create_efficientnet_model,
     create_vit_model,
     AIHybrid
@@ -49,10 +49,9 @@ class ModelLoader:
                 raise FileNotFoundError(f"Model 1 not found: {MODEL_CHECKPOINT_1}")
             
             # Initialize architecture
-            model = AiOrReal(
-                input_shape=CUSTOM_CNN_INPUT,
-                hidden_units=CUSTOM_CNN_HIDDEN,
-                output_shape=CUSTOM_CNN_OUTPUT
+            model = TinyVGG(
+                in_channels=CUSTOM_CNN_INPUT,
+                num_classes=CUSTOM_CNN_OUTPUT
             ).to(self.device)
             
             # Load state_dict (saved weights)

@@ -1,4 +1,4 @@
-"""
+""
 Copy trained models from artifacts to models/ folder for inference.
 Run this after training completes.
 """
